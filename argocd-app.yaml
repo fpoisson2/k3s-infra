@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/fpoisson/k3s-infra
+    repoURL: https://github.com/fpoisson2/k3s-infra
     targetRevision: main
     path: k8s/
   destination:
