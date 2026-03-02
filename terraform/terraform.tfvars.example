@@ -1,0 +1,7 @@
+# Copier ce fichier en terraform.tfvars et remplir les valeurs
+# NE PAS committer terraform.tfvars dans Git !
+
+cf_api_token  = "ton_api_token_cloudflare"
+cf_account_id = "ton_account_id"
+cf_zone_id    = "ton_zone_id"
+cf_domain     = "ve2fpd.com"

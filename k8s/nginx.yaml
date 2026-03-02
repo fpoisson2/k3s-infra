@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: cloudflare-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web-content
+          persistentVolumeClaim:
+            claimName: nginx-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: cloudflare-test
+spec:
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
