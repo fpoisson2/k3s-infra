@@ -1,18 +1,3 @@
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nginx-nfs-pv
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: 192.168.1.203
-    path: /mnt/pve/cephfs/k3s/nginx-web
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -21,8 +6,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ""
-  volumeName: nginx-nfs-pv
+  storageClassName: ceph-csi-cephfs
   resources:
     requests:
       storage: 10Gi
